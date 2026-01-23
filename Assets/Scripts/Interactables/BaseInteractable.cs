@@ -13,7 +13,9 @@ namespace BGNS_Studios
         protected OutlineInteractable _outline;
         [SerializeField]
         protected ParticleSystem _interactableParticle;
-        private PlayerInteractor _playerInteractor;
+        private InteractableSelectorService _interactableSelector;
+
+        public virtual string IterationName => "Interact";
 
         private void Reset()
         {
@@ -24,16 +26,16 @@ namespace BGNS_Studios
         {
             if (ServiceLocator.Instance.Exists<InventoryManagerService>())
                 _inventoryManagerService = ServiceLocator.Instance.Get<InventoryManagerService>();
-            if (ServiceLocator.Instance.Exists<PlayerInteractor>())
-                _playerInteractor = ServiceLocator.Instance.Get<PlayerInteractor>();
+            if (ServiceLocator.Instance.Exists<InteractableSelectorService>())
+                _interactableSelector = ServiceLocator.Instance.Get<InteractableSelectorService>();
 
-            _playerInteractor?.AddInteractable(this);
+            _interactableSelector?.AddInteractable(this);
             _interactableParticle?.Play();
         }
 
         private void OnDestroy()
         {
-            _playerInteractor?.RemoveInteractable(this);
+            _interactableSelector?.RemoveInteractable(this);
         }
 
         [ContextMenu(nameof(Interact))]

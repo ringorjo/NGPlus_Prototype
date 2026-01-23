@@ -5,6 +5,7 @@ namespace BGNS_Studios
 {
     public interface IInteractable
     {
+        public string IterationName { get; }
         Transform GetTransform();
         void Interact();    
 

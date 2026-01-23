@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BGNS_Studios
 {
-    public class PlayerInteractor : MonoBehaviour, IService
+    public class InteractableSelectorService : MonoBehaviour, IService
     {
+        public event Action<bool, IInteractable> OnPlayerInteract;
         [SerializeField, Range(-1f, 1f)]
         private float _dotTolerance;
         [SerializeField]
@@ -74,6 +76,7 @@ namespace BGNS_Studios
                         {
                             _currentSelected = interactable;
                             _currentSelected.OnFocus();
+                            OnPlayerInteract?.Invoke(true,_currentSelected);
                         }  
                     }
                     else 
@@ -82,6 +85,8 @@ namespace BGNS_Studios
                         {
                             _currentSelected.OnLoseFocus();
                             _currentSelected = null;
+                            OnPlayerInteract?.Invoke(false,null);
+
                         }
                     }
                 }
