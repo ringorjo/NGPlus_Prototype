@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08480b48e043dac408c8003bfef32f3d, type: 3}
-  m_Name: Potion_2
+  m_Name: Mana_Potion
   m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.ConsumibleData
-  Icon: {fileID: 1816603509, guid: 7133f82fd49f1544680de8b6c9d9ed0a, type: 3}
-  ItemID: Potion_2
-  ItemName: Greater Health Potion
+  Icon: {fileID: 1475198050, guid: 7133f82fd49f1544680de8b6c9d9ed0a, type: 3}
+  ItemID: Mana_Potion
+  ItemName: Mana Potion
   Quantity: 2
   IsConsumable: 1
-  Description: A powerful potion that restores a large amount of health.
+  Description: A small potion that restores a small amount of mana.

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7d296389ca26c845ac12b6bf1aedd73, type: 3}
-  m_Name: Weapon_2
+  m_Name: Greaves
   m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.EquipData
-  Icon: {fileID: 1467024609, guid: 7133f82fd49f1544680de8b6c9d9ed0a, type: 3}
-  ItemID: Weapon_2
-  ItemName: Steel Battle Axe
+  Icon: {fileID: -1804681607, guid: 02a0fe1d91b1f004da481fc48aea45e1, type: 3}
+  ItemID: Greaves
+  ItemName: Greaves
   Quantity: 1
   IsConsumable: 0
-  Description: A heavy steel axe that deals powerful blows. Slow, but extremely destructive.
+  Description: Polished steel leg guards with ornate golden accents, protecting the
+    warrior from the knee to the ankle.
