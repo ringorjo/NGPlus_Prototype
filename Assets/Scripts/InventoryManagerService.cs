@@ -44,12 +44,41 @@ namespace BGNS_Studios
             OnSlotDataSelected?.Invoke(_currentSlotSelected);
         }
 
-        public void SwapSlot(InvetorySlot from, InvetorySlot to)
+        public void UpdateSlot(InvetorySlot from, InvetorySlot to)
         {
-            from?.InjectData(null);
-            to?.InjectData(from.ItemData);
-            // limpiar el slot from y pasar los datos al slot to
+            if (CanStack(from, to))
+            {
+                StackItems(from, to);
+                return;
+            }
 
+            if (!to.IsOcuped)
+            {
+                MoveItem(from, to);
+            }
+        }
+
+        private bool SlotsExist(InvetorySlot from, InvetorySlot to)
+        {
+            return from.ItemData != null && to.ItemData != null;
+        }
+
+        private bool CanStack(InvetorySlot from, InvetorySlot to)
+        {
+            if (!SlotsExist(from, to))
+                return false;
+
+            return from.ItemData.ItemID == to.ItemData.ItemID && from.ItemData.IsConsumable;
+        }
+        private void StackItems(InvetorySlot from, InvetorySlot to)
+        {
+            to.AddQuantity(from.ItemData.Quantity);
+            from.InjectData(null);
+        }
+        private void MoveItem(InvetorySlot from, InvetorySlot to)
+        {
+            to.InjectData(from.ItemData);
+            from.InjectData(null);
         }
 
 

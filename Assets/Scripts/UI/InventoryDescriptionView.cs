@@ -58,7 +58,7 @@ namespace BGNS_Studios
 
         private void UpdateDescription(InvetorySlot slot)
         {
-            _currentItemData= slot;
+            _currentItemData = slot;
             ChangeButtonState(slot.ItemData);
         }
 
@@ -66,6 +66,7 @@ namespace BGNS_Studios
         {
             _dropButton.interactable = data == null ? false : true;
             _useButton.interactable = data == null ? false : true;
+            _icon.enabled = data == null ? false : true;
             _icon.sprite = data == null ? null : data.Icon;
             _tittle.text = data == null ? string.Empty : data.ItemName;
             _description.text = data == null ? string.Empty : data.Description;

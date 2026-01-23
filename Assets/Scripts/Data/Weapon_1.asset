@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d296389ca26c845ac12b6bf1aedd73, type: 3}
+  m_Name: Weapon_1
+  m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.EquipData
+  Icon: {fileID: 1301284281, guid: 7133f82fd49f1544680de8b6c9d9ed0a, type: 3}
+  ItemID: Weapon_1
+  ItemName: Rusty Sword
+  Quantity: 1
+  IsConsumable: 0
+  Description: An old and worn blade. Weak, but better than fighting bare-handed.

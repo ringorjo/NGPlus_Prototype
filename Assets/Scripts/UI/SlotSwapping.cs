@@ -45,12 +45,10 @@ namespace BGNS_Studios
             transform.SetParent(_defaultParent);
             transform.localPosition = _defaultPosition;
             InvetorySlot _targetSlot = eventData.pointerCurrentRaycast.gameObject.GetComponent<InvetorySlot>();
-            if (_targetSlot && !_targetSlot.IsOcuped)
+            if (_targetSlot)
             {
-                Debug.Log("Move in: "+ _targetSlot.name);
-                //_inventoryManagerService?.SwapSlot(_slot, _targetSlot);
+                _inventoryManagerService?.UpdateSlot(_slot, _targetSlot);
             }
-
         }
 
         public void OnPointerEnter(PointerEventData eventData)

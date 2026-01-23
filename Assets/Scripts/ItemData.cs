@@ -5,11 +5,10 @@ namespace BGNS_Studios
 
 
 
-    [CreateAssetMenu(fileName = "ItemData", menuName = "Scriptable Objects/ItemData")]
     public abstract class ItemData : ScriptableObject
     {
         public Sprite Icon;
-        public int ItemID;
+        public string ItemID;
         public string ItemName;
         public int Quantity;
         public bool IsConsumable;

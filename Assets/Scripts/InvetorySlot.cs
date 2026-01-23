@@ -15,7 +15,9 @@ namespace BGNS_Studios
         private TextMeshProUGUI _quantity;
         [SerializeField]
         private bool _isOcuped;
+        [SerializeField]
         private int _quantityCount;
+        [SerializeField]
         private ItemData _itemData;
         private InventoryManagerService _inventoryManagerService;
 
@@ -46,27 +48,24 @@ namespace BGNS_Studios
                 ClearData();
                 return;    
             }
+            Debug.Log($"Injecting Data to Slot:{data.ItemName}");
+            UpdateSlot(data);
+        }
 
-
-            if (!_isOcuped)
+        private void UpdateSlot(ItemData data)
+        {
+            if (_itemData==null)
             {
-                InitializeSlot(data);
-                return;
+                _itemData = data;
+                _icon.sprite = data.Icon;
+                _icon.enabled = true;
+                _isOcuped = true;
             }
+
             AddQuantity(data.Quantity);
         }
 
-        private void InitializeSlot(ItemData data)
-        {
-            _itemData = data;
-            _icon.sprite = data.Icon;
-            _icon.enabled = true;
-            _isOcuped = true;
-            _quantityCount = data.Quantity;
-            _quantity.text = $"X{_quantityCount}";
-        }
-
-        private void AddQuantity(int amount)
+        public void AddQuantity(int amount)
         {
             _quantityCount += amount;
             _quantity.text = $"X{_quantityCount}";
@@ -112,14 +111,12 @@ namespace BGNS_Studios
         {
             if (!_isOcuped)
                 return;
-            Debug.Log("Clicked Slot");
             _selector.enabled = true;
             _inventoryManagerService?.SelectSlot(this);
         }
         public void OnUnSelect()
         {
             _selector.enabled = false;
-            Debug.Log("Unselected Slot");
         }
     }
 }
