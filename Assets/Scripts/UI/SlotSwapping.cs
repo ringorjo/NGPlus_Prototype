@@ -8,7 +8,6 @@ namespace BGNS_Studios
         [SerializeField, Range(0, 1)]
         private float _alphaValue = .6f;
         private Vector3 _defaultPosition;
-        [SerializeField]
         private Transform _defaultParent;
         private CanvasGroup _canvasGroup;
         private InvetorySlot _slot;

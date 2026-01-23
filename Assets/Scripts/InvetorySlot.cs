@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace BGNS_Studios
 {
+
     public class InvetorySlot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField]
@@ -13,26 +14,32 @@ namespace BGNS_Studios
         private Image _selector;
         [SerializeField]
         private TextMeshProUGUI _quantity;
-        [SerializeField]
-        private int _slotSize = 10;
         private bool _isOcuped;
         private int _quantityCount;
         private ItemData _itemData;
         private InventoryManagerService _inventoryManagerService;
 
+        public string SlotId
+        {
+            get => gameObject.name;
+        }
+
         public ItemData ItemData
         {
             get => _itemData;
         }
-        public bool IsOcuped 
-        { 
+        public bool IsOcuped
+        {
             get => _isOcuped;
         }
-
+        public int QuantityCount 
+        { 
+            get => _quantityCount; 
+        }
 
         private void Awake()
         {
-            ClearData();
+            CleanSlot();
         }
 
         private void Start()
@@ -43,17 +50,17 @@ namespace BGNS_Studios
 
         public void InjectData(ItemData data)
         {
-            if(data==null)
+            if (data == null)
             {
-                ClearData();
-                return;    
+                CleanSlot();
+                return;
             }
             UpdateSlot(data);
         }
 
         private void UpdateSlot(ItemData data)
         {
-            if (_itemData==null)
+            if (_itemData == null)
             {
                 _itemData = data;
                 _icon.sprite = data.Icon;
@@ -83,7 +90,7 @@ namespace BGNS_Studios
                 return;
             }
             _isOcuped = false;
-            ClearData();
+            CleanSlot();
         }
 
         public void UseItem()
@@ -95,10 +102,10 @@ namespace BGNS_Studios
         {
             _itemData?.DropItem();
             _inventoryManagerService?.RemoveFromInventory(this);
-            ClearData();
+            CleanSlot();
         }
 
-        private void ClearData()
+        private void CleanSlot()
         {
             _itemData = null;
             _icon.enabled = false;

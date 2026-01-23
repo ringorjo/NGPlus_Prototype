@@ -49,6 +49,7 @@ namespace BGNS_Studios
             {
                 InvetorySlot slot = _inventoryManager.Slots.Find(s => s.SlotId == inventoryData.slotID);
                 ItemData itemData = _itemsCollection.GetItemByID(inventoryData.itemID);
+                itemData.Quantity = inventoryData.quantity;
                 if (slot != null && itemData != null)
                 {
                     slot.InjectData(itemData);
