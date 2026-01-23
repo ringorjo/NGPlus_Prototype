@@ -519,13 +519,22 @@
             ]
         },
         {
-            "name": "InteractionMap",
+            "name": "Interaction",
             "id": "3e0b26d0-ab3a-4860-be44-5b9415e051da",
             "actions": [
                 {
                     "name": "Inventory",
                     "type": "Button",
                     "id": "66ef0f89-756d-41ad-afc6-53fcd0e4c1f7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "7eaedd99-ca82-4f34-88a4-6186d2e16a76",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -552,6 +561,17 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d2585a0c-2787-4afa-915c-d4bac9f23ef2",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
