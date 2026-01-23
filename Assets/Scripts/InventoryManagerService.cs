@@ -6,31 +6,39 @@ namespace BGNS_Studios
 {
     public class InventoryManagerService : MonoBehaviour, IService
     {
+        [SerializeField]
         private List<InvetorySlot> _slots = new List<InvetorySlot>();
         public event Action<InvetorySlot> OnSlotDataSelected;
+        public event Action<int> OnInventoryUpdated;
         private InvetorySlot _currentSlotSelected;
+
+        public int SlotsUsed
+        {
+            get => _slots.FindAll(slot => slot.IsOcuped).Count;
+        }
+
+        public int TotalSlots
+        {
+            get => _slots.Count;
+        }
+
         private void Awake()
         {
             Register();
         }
 
-        public void AddSlot(InvetorySlot slot)
+        public void AddToInventory(ItemData slotdata)
         {
-            if (!_slots.Contains(slot))
-            {
-                _slots.Add(slot);
-            }
+            InvetorySlot slot = GetFreeSlot();
+            slot?.InjectData(slotdata);
+            OnInventoryUpdated?.Invoke(SlotsUsed);
         }
 
-        public void RemoveSlot(InvetorySlot slot)
+        public void RemoveFromInventory(InvetorySlot slot)
         {
-            if (_slots.Contains(slot))
-            {
-                _slots.Remove(slot);
-            }
+            slot?.InjectData(null);
+            OnInventoryUpdated?.Invoke(SlotsUsed);
         }
-
-
 
         private void OnDestroy()
         {
@@ -81,6 +89,10 @@ namespace BGNS_Studios
             from.InjectData(null);
         }
 
+        private InvetorySlot GetFreeSlot()
+        {
+            return _slots.Find(slot => !slot.IsOcuped);
+        }
 
         public void Register() => ServiceLocator.Instance.Register(this);
 

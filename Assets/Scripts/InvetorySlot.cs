@@ -14,10 +14,9 @@ namespace BGNS_Studios
         [SerializeField]
         private TextMeshProUGUI _quantity;
         [SerializeField]
+        private int _slotSize = 10;
         private bool _isOcuped;
-        [SerializeField]
         private int _quantityCount;
-        [SerializeField]
         private ItemData _itemData;
         private InventoryManagerService _inventoryManagerService;
 
@@ -29,6 +28,7 @@ namespace BGNS_Studios
         { 
             get => _isOcuped;
         }
+
 
         private void Awake()
         {
@@ -48,7 +48,6 @@ namespace BGNS_Studios
                 ClearData();
                 return;    
             }
-            Debug.Log($"Injecting Data to Slot:{data.ItemName}");
             UpdateSlot(data);
         }
 
@@ -94,6 +93,8 @@ namespace BGNS_Studios
 
         public void DropItem()
         {
+            _itemData?.DropItem();
+            _inventoryManagerService?.RemoveFromInventory(this);
             ClearData();
         }
 
