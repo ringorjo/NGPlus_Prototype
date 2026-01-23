@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.EquipData
   Icon: {fileID: 1301284281, guid: 7133f82fd49f1544680de8b6c9d9ed0a, type: 3}
+  prefab: {fileID: 6721201626750982739, guid: b9dd19cccff18e44eba31135546cebcf, type: 3}
   ItemID: Sword
   ItemName: Rusty Sword
   Quantity: 1

@@ -1,16 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static Input;
 
 namespace BGNS_Studios
 {
-    public class InteractableSelectorService : MonoBehaviour, IService, IInteractionActions
+    public class InteractableSelectorService : MonoBehaviour, IService
     {
-        public event Action<bool, IInteractable> OnPlayerInteract;
+        public event Action<bool, IInteractable> OnInteractableSelectorChanged;
         [SerializeField, Range(-1f, 1f)]
         private float _dotTolerance;
         [SerializeField]
@@ -21,9 +18,10 @@ namespace BGNS_Studios
         private Camera _camera;
         private WaitForSeconds _seconds;
         private IInteractable _currentSelected;
-        private Input _interact;
+        private InputManagerService _inputManagerService;
 
         private List<IInteractable> _interactables = new List<IInteractable>();
+        private bool _isfocusing = true;
 
         public void AddInteractable(IInteractable interactable)
         {
@@ -50,27 +48,22 @@ namespace BGNS_Studios
         private void Start()
         {
             StartCoroutine(UpdateAsync());
-        }
-
-        private void OnEnable()
-        {
-            if (_interact == null)
+            _inputManagerService = ServiceLocator.Instance.Get<InputManagerService>();
+            if (_inputManagerService != null)
             {
-                _interact = new Input();
-                _interact.Interaction.SetCallbacks(this);
+                _inputManagerService.OnInteractableKeyPressed += OnInteract;
+                _inputManagerService.OnFocusing += OnGameFocus;
             }
-            _interact.Enable();
         }
 
-        private void OnDisable()
-        {
-            if (_interact != null)
-                _interact.Disable();
-        }
+        private void OnGameFocus(bool isfocus) => _isfocusing = isfocus;
+
 
         private void OnDestroy()
         {
             Unregister();
+            if (_inputManagerService != null)
+                _inputManagerService.OnInteractableKeyPressed -= OnInteract;
         }
 
         public void Register()
@@ -99,12 +92,12 @@ namespace BGNS_Studios
                         {
                             _currentSelected = interactable;
                             _currentSelected.OnFocus();
-                            OnPlayerInteract?.Invoke(true,_currentSelected);
-                        }  
+                            OnInteractableSelectorChanged?.Invoke(true, _currentSelected);
+                        }
                     }
-                    else 
+                    else
                     {
-                        if(_currentSelected == interactable)
+                        if (_currentSelected == interactable)
                         {
                             CleanInteractable();
                         }
@@ -115,20 +108,17 @@ namespace BGNS_Studios
             }
         }
 
-        public void OnInteract(InputAction.CallbackContext context)
+        private void OnInteract()
         {
-            bool ispressed = context.performed;
-            if (ispressed)
-            {
+            if (_isfocusing)
                 _currentSelected?.Interact();
-            }
         }
 
         private void CleanInteractable()
         {
             _currentSelected?.OnLoseFocus();
             _currentSelected = null;
-            OnPlayerInteract?.Invoke(false, null);
+            OnInteractableSelectorChanged?.Invoke(false, null);
         }
     }
 }

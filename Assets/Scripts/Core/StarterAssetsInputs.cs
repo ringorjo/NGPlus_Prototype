@@ -1,3 +1,5 @@
+using BGNS_Studios;
+using System;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -19,16 +21,38 @@ namespace StarterAssets
 		[Header("Mouse Cursor Settings")]
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
+		private bool _isFocusing = true;
+        private InputManagerService _inputManagerService;
+
+
+        private void Start()
+        {
+            _inputManagerService=ServiceLocator.Instance.Get<InputManagerService>();
+			if (_inputManagerService != null)
+                _inputManagerService.OnFocusing += OnFocusGame;
+        }
+
+        private void OnFocusGame(bool isfocus)
+        {
+            _isFocusing=isfocus;
+			Debug.Log("Focus: " + _isFocusing);
+            cursorLocked =isfocus;
+			cursorInputForLook=isfocus;
+            SetCursorState(cursorLocked);
+        }
 
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
+			if (!_isFocusing)
+				return;
 			MoveInput(value.Get<Vector2>());
 		}
 
 		public void OnLook(InputValue value)
 		{
-			if(cursorInputForLook)
+           
+            if (cursorInputForLook)
 			{
 				LookInput(value.Get<Vector2>());
 			}
@@ -36,12 +60,16 @@ namespace StarterAssets
 
 		public void OnJump(InputValue value)
 		{
-			JumpInput(value.isPressed);
+            if (!_isFocusing)
+                return;
+            JumpInput(value.isPressed);
 		}
 
 		public void OnSprint(InputValue value)
 		{
-			SprintInput(value.isPressed);
+            if (!_isFocusing)
+                return;
+            SprintInput(value.isPressed);
 		}
 #endif
 
@@ -68,7 +96,7 @@ namespace StarterAssets
 
 		private void OnApplicationFocus(bool hasFocus)
 		{
-			SetCursorState(cursorLocked);
+			
 		}
 
 		private void SetCursorState(bool newState)

@@ -21,7 +21,7 @@ namespace BGNS_Studios
             if (ServiceLocator.Instance.Exists<InteractableSelectorService>())
             {
                 _interactableSelector = ServiceLocator.Instance.Get<InteractableSelectorService>();
-                _interactableSelector.OnPlayerInteract += OnSelectInteractable;
+                _interactableSelector.OnInteractableSelectorChanged += OnSelectInteractable;
             }
             _recTransform = GetComponent<RectTransform>();
             _canvasGroup.alpha = 0;
@@ -32,7 +32,7 @@ namespace BGNS_Studios
         private void OnDestroy()
         {
             if (_interactableSelector != null)
-                _interactableSelector.OnPlayerInteract -= OnSelectInteractable;
+                _interactableSelector.OnInteractableSelectorChanged -= OnSelectInteractable;
 
         }
 

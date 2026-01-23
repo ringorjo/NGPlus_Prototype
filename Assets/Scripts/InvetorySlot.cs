@@ -32,9 +32,9 @@ namespace BGNS_Studios
         {
             get => _isOcuped;
         }
-        public int QuantityCount 
-        { 
-            get => _quantityCount; 
+        public int QuantityCount
+        {
+            get => _quantityCount;
         }
 
         private void Awake()
@@ -81,21 +81,21 @@ namespace BGNS_Studios
         {
             if (!_isOcuped)
                 return;
+
             _itemData?.UseItem();
 
-            if (_quantityCount < 0 && _itemData.IsConsumable)
+            if (_quantityCount > 0)
             {
                 _quantityCount--;
                 _quantity.text = $"X{_quantityCount}";
-                return;
             }
-            _isOcuped = false;
-            CleanSlot();
         }
 
         public void UseItem()
         {
             UpdateSlot();
+            if (_quantityCount == 0)
+                CleanSlot();
         }
 
         public void DropItem()

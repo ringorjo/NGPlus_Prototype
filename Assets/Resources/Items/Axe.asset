@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.EquipData
   Icon: {fileID: 1467024609, guid: 7133f82fd49f1544680de8b6c9d9ed0a, type: 3}
+  prefab: {fileID: 6984191805666449973, guid: ce9ef50ac71e55d458bdef57633a0026, type: 3}
   ItemID: Axe
   ItemName: Steel Battle Axe
   Quantity: 1

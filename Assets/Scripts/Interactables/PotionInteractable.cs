@@ -1,4 +1,3 @@
-using UnityEngine;
 
 namespace BGNS_Studios
 {
@@ -7,6 +6,8 @@ namespace BGNS_Studios
         public override void Interact()
         {
             base.Interact();
+            Destroy(gameObject);
+
         }
     }
 }

@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Mana_Potion
   m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.ConsumibleData
   Icon: {fileID: 1475198050, guid: 7133f82fd49f1544680de8b6c9d9ed0a, type: 3}
+  prefab: {fileID: 920069535675312398, guid: 873f7f182d5df8e4aabc928e1d606607, type: 3}
   ItemID: Mana_Potion
   ItemName: Mana Potion
   Quantity: 2
   IsConsumable: 1
   Description: A small potion that restores a small amount of mana.
+  _isForHealth: 0
+  _percentageEffectivity: 0.25

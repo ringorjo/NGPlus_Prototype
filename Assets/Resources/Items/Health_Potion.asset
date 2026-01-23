@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08480b48e043dac408c8003bfef32f3d, type: 3}
   m_Name: Health_Potion
   m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.ConsumibleData
-  Icon: {fileID: 1816603509, guid: 7133f82fd49f1544680de8b6c9d9ed0a, type: 3}
+  Icon: {fileID: 763610097, guid: 7133f82fd49f1544680de8b6c9d9ed0a, type: 3}
+  prefab: {fileID: 9083292999855435707, guid: 9bffe1eaca61a8a498a3455a51737a7b, type: 3}
   ItemID: Health_Potion
   ItemName: Greater Health Potion
   Quantity: 2
   IsConsumable: 1
   Description: A powerful potion that restores a large amount of health.
+  _isForHealth: 1
+  _percentageEffectivity: 0.3
