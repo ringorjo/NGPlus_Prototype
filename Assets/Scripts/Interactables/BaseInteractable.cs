@@ -13,7 +13,7 @@ namespace BGNS_Studios
         protected OutlineInteractable _outline;
         [SerializeField]
         protected ParticleSystem _interactableParticle;
-        private InteractableSelectorService _interactableSelector;
+        protected InteractableSelectorService _interactableSelector;
 
         public virtual string IterationName => "Interact";
 

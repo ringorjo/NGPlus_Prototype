@@ -5,15 +5,19 @@ namespace BGNS_Studios
     {
         [SerializeField]
         private Animator _animator;
-        private const string OPEN_TRIGGER = "Open";
+        [SerializeField]
+        private AudioSource _audioSource;
+        private const string ANIMATION_STATE = "Open";
         public override string IterationName => "Open";
 
 
         public override void Interact()
         {
-            _animator.SetTrigger(OPEN_TRIGGER);
+            _animator.Play(ANIMATION_STATE);
             _interactableParticle?.Stop();
+            _audioSource?.Play();
+            _interactableSelector.RemoveInteractable(this);
         }
-        
+
     }
 }

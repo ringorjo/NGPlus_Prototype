@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static Input;
 
 namespace BGNS_Studios
 {
-    public class InteractableSelectorService : MonoBehaviour, IService
+    public class InteractableSelectorService : MonoBehaviour, IService, IInteractionActions
     {
         public event Action<bool, IInteractable> OnPlayerInteract;
         [SerializeField, Range(-1f, 1f)]
@@ -18,6 +21,7 @@ namespace BGNS_Studios
         private Camera _camera;
         private WaitForSeconds _seconds;
         private IInteractable _currentSelected;
+        private Input _interact;
 
         private List<IInteractable> _interactables = new List<IInteractable>();
 
@@ -30,7 +34,10 @@ namespace BGNS_Studios
         public void RemoveInteractable(IInteractable interactable)
         {
             if (_interactables.Contains(interactable))
+            {
+                CleanInteractable();
                 _interactables.Remove(interactable);
+            }
         }
 
         private void Awake()
@@ -43,6 +50,22 @@ namespace BGNS_Studios
         private void Start()
         {
             StartCoroutine(UpdateAsync());
+        }
+
+        private void OnEnable()
+        {
+            if (_interact == null)
+            {
+                _interact = new Input();
+                _interact.Interaction.SetCallbacks(this);
+            }
+            _interact.Enable();
+        }
+
+        private void OnDisable()
+        {
+            if (_interact != null)
+                _interact.Disable();
         }
 
         private void OnDestroy()
@@ -83,10 +106,7 @@ namespace BGNS_Studios
                     {
                         if(_currentSelected == interactable)
                         {
-                            _currentSelected.OnLoseFocus();
-                            _currentSelected = null;
-                            OnPlayerInteract?.Invoke(false,null);
-
+                            CleanInteractable();
                         }
                     }
                 }
@@ -95,5 +115,20 @@ namespace BGNS_Studios
             }
         }
 
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+            bool ispressed = context.performed;
+            if (ispressed)
+            {
+                _currentSelected?.Interact();
+            }
+        }
+
+        private void CleanInteractable()
+        {
+            _currentSelected?.OnLoseFocus();
+            _currentSelected = null;
+            OnPlayerInteract?.Invoke(false, null);
+        }
     }
 }

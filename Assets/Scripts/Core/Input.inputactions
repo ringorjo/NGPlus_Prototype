@@ -523,15 +523,6 @@
             "id": "3e0b26d0-ab3a-4860-be44-5b9415e051da",
             "actions": [
                 {
-                    "name": "Inventory",
-                    "type": "Button",
-                    "id": "66ef0f89-756d-41ad-afc6-53fcd0e4c1f7",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "7eaedd99-ca82-4f34-88a4-6186d2e16a76",
@@ -544,34 +535,40 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "b97f68a7-ad00-47ea-b50c-dfcb5b8d6971",
-                    "path": "<Keyboard>/i",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bbbd4b9f-b1af-4f3f-bb5e-15436c8f8f79",
-                    "path": "<XInputController>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d2585a0c-2787-4afa-915c-d4bac9f23ef2",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Hud",
+            "id": "6a0c4e79-0b36-4e75-b37e-4a2ba4baa2c8",
+            "actions": [
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "2a2bee02-81e9-4dea-ab71-2f781320708a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d65d71d5-a5a7-4d11-b7a2-ab4905ea6813",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
