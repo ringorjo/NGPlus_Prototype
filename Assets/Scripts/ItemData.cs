@@ -13,7 +13,11 @@ namespace BGNS_Studios
         [TextArea]
         public string Description;
         public abstract void UseItem();
-        public abstract void DropItem();
+        public virtual void DropItem()
+        {
+            Transform spawn = ServiceLocator.Instance.Get<Player>().ItemDropSpawn;
+            Instantiate(prefab, spawn.position, Quaternion.identity);// Refactor Use Pool
+        }
     }
 
 }

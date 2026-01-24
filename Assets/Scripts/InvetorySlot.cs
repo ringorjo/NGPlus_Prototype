@@ -84,7 +84,7 @@ namespace BGNS_Studios
 
             _itemData?.UseItem();
 
-            if (_quantityCount > 0)
+            if (_quantityCount > 0 && _itemData.IsConsumable)
             {
                 _quantityCount--;
                 _quantity.text = $"X{_quantityCount}";

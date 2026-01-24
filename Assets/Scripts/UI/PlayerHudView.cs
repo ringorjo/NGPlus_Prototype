@@ -9,11 +9,11 @@ namespace BGNS_Studios
         private Image _healthBar;
         [SerializeField]
         private Image _manaBar;
-        private PlayerStats _playerStats;
+        private Player _playerStats;
 
         private void Start()
         {
-            _playerStats = ServiceLocator.Instance.Get<PlayerStats>();
+            _playerStats = ServiceLocator.Instance.Get<Player>();
             if (_playerStats != null)
             {
                 _playerStats.OnHealthChanged += OnHealthChanged;
