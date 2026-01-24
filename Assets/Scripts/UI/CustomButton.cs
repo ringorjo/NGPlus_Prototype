@@ -13,6 +13,7 @@ namespace BGNS_Studios
         private TextMeshProUGUI _buttonText;
         [SerializeField]
         private List<ButtonTextStyle> _states;
+        private ButtonTextStyle _style;
 
         public ButtonTextStyle GetButtonTextStyle(TextSelectionState state)
         {
@@ -28,15 +29,19 @@ namespace BGNS_Studios
         {
             base.DoStateTransition(state, instant);
 
-            if(_states.Count==0)
+            if (_states.Count == 0)
                 return;
 
             if (!IsInteractable())
             {
-                _buttonText.color = GetButtonTextStyle(TextSelectionState.Disabled).TextColor;
+                _style = GetButtonTextStyle(TextSelectionState.Disabled);
+                if (_style != null)
+                    _buttonText.color = _style.TextColor;
                 return;
             }
-            _buttonText.color = GetButtonTextStyle((TextSelectionState)state).TextColor;
+            _style = GetButtonTextStyle((TextSelectionState)state);
+            if (_style != null)
+                _buttonText.color = _style.TextColor;
         }
     }
 }

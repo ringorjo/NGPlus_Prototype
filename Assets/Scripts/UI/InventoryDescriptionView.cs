@@ -59,19 +59,19 @@ namespace BGNS_Studios
         private void UpdateDescription(InvetorySlot slot)
         {
             _currentItemData = slot;
-            ChangeButtonState(slot.ItemData);
+            ChangeButtonState(_currentItemData);
         }
 
-        private void ChangeButtonState(ItemData data)
+        private void ChangeButtonState(InvetorySlot slot)
         {
-            _dropButton.interactable = data == null ? false : true;
-            _useButton.interactable = data == null ? false : true;
-            _icon.enabled = data == null ? false : true;
-            _icon.sprite = data == null ? null : data.Icon;
-            _tittle.text = data == null ? string.Empty : data.ItemName;
-            _description.text = data == null ? string.Empty : data.Description;
-            if (data != null)
-                _useButtonText.text = data.IsConsumable ? "Use" : "Equip";
+            _dropButton.interactable = slot == null ? false : true;
+            _useButton.interactable = slot == null ? false : true;
+            _icon.enabled = slot == null ? false : true;
+            _icon.sprite = slot == null ? null : slot.ItemData.Icon;
+            _tittle.text = slot == null ? string.Empty : slot.ItemData.ItemName;
+            _description.text = slot == null ? string.Empty : slot.ItemData.Description;
+            if (slot != null)
+                _useButtonText.text = slot.ItemData.IsConsumable ? "Use" : "Equip";
         }
     }
 }

@@ -44,19 +44,17 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
         public void OnMove(InputValue value)
 		{
-			if (!_isFocusing)
-				return;
-			MoveInput(value.Get<Vector2>());
+			Vector2 newValue= _isFocusing ? value.Get<Vector2>() :Vector2.zero;
+			MoveInput(newValue);
 		}
 
 		public void OnLook(InputValue value)
 		{
-            if (!_isFocusing)
-                return;
 
             if (cursorInputForLook)
 			{
-				LookInput(value.Get<Vector2>());
+                Vector2 newValue = _isFocusing ? value.Get<Vector2>() : Vector2.zero;
+                LookInput(newValue);
 			}
 		}
 
@@ -98,8 +96,8 @@ namespace StarterAssets
 
 		private void OnApplicationFocus(bool hasFocus)
 		{
-			
-		}
+			SetCursorState(cursorLocked);
+        }
 
 		private void SetCursorState(bool newState)
 		{

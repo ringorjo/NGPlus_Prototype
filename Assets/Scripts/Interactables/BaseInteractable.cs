@@ -15,7 +15,7 @@ namespace BGNS_Studios
         protected ParticleSystem _interactableParticle;
         protected InteractableSelectorService _interactableSelector;
 
-        public virtual string IterationName => "Interact";
+        public virtual string IterationName => "add to Inventory";
 
         private void Reset()
         {

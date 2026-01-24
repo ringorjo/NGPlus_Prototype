@@ -113,6 +113,7 @@ namespace BGNS_Studios
             _isOcuped = false;
             _quantity.text = string.Empty;
             _quantityCount = 0;
+            _inventoryManagerService?.SelectSlot(null);
         }
 
         public void OnPointerClick(PointerEventData eventData)
