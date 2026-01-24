@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Helmet
   m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.EquipData
   Icon: {fileID: -1684642240, guid: 02a0fe1d91b1f004da481fc48aea45e1, type: 3}
-  ItemID: Helm
+  prefab: {fileID: 2835264075884276414, guid: 040fea574e9aea1469d234c528a7ab14, type: 3}
+  ItemID: Helmet
   ItemName: Great Helm
   Quantity: 1
   IsConsumable: 0

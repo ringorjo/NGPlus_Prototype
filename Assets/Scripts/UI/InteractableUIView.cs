@@ -10,8 +10,8 @@ namespace BGNS_Studios
         private TextMeshProUGUI _label;
         [SerializeField]
         private Vector3 _offsetLabel;
-        private IInteractable _currentInteractable;
         private RectTransform _recTransform;
+        private Transform _interactableTransform;
 
         private InteractableSelectorService _interactableSelector;
 
@@ -38,20 +38,19 @@ namespace BGNS_Studios
 
         private void OnSelectInteractable(bool isvisible, IInteractable interactable)
         {
-
-            enabled = isvisible;
             _canvasGroup.alpha = isvisible ? 1 : 0;
-            _currentInteractable= interactable;
             if (isvisible)
                 _label.text = $"To {interactable.IterationName}";
+            enabled = isvisible;
+            _interactableTransform = interactable == null ? null: interactable.GetTransform();
         }
 
         private void Update()
         {
-            if (_currentInteractable == null)
+            if (_interactableTransform == null)
                 return;
 
-            Vector3 screenPos = Camera.main.WorldToScreenPoint(_currentInteractable.GetTransform().position);
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(_interactableTransform.position);
             _recTransform.position = screenPos + _offsetLabel;
 
         }

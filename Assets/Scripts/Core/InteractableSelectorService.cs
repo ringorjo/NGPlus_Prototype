@@ -119,6 +119,7 @@ namespace BGNS_Studios
             _currentSelected?.OnLoseFocus();
             _currentSelected = null;
             OnInteractableSelectorChanged?.Invoke(false, null);
+
         }
     }
 }

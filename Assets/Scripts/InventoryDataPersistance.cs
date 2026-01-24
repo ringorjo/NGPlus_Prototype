@@ -8,22 +8,22 @@ namespace BGNS_Studios
     {
         [SerializeField]
         private InventoryManagerService _inventoryManager;
-
+        [SerializeField]
+        private InventoryDataCollection _data;
         private const string INVENTORY_DATA_FILENAME = "inventory_data";
         private JsonPersistence<InventoryDataCollection> _inventoryData;
-        private InventoryDataCollection _data;
+      
         private ItemsCollectionResources _itemsCollection;
 
         private void Awake()
         {
-            _data = new InventoryDataCollection();
             _inventoryData = new JsonPersistence<InventoryDataCollection>(INVENTORY_DATA_FILENAME);
             _itemsCollection = new ItemsCollectionResources();
         }
 
         private void Start()
         {
-            // LoadData();
+            LoadData();
         }
 
         private void Reset()
@@ -33,7 +33,7 @@ namespace BGNS_Studios
 
         private void OnApplicationQuit()
         {
-            // SaveData();
+            SaveData();
         }
 
 
@@ -42,7 +42,10 @@ namespace BGNS_Studios
         {
             _data = _inventoryData.Load();
             if (_data == null)
-                throw new System.Exception("Loading Data error");
+            {
+                Debug.LogWarning("Error: Loading Data");
+                return;
+            }
 
             _inventoryManager.CleanSlots();
             foreach (InventoryData inventoryData in _data.inventoryDatas)
@@ -60,6 +63,7 @@ namespace BGNS_Studios
         [ContextMenu(nameof(SaveData))]
         private void SaveData()
         {
+            _data = new InventoryDataCollection();
             foreach (InvetorySlot slot in _inventoryManager.Slots)
             {
                 if (!slot.IsOcuped)

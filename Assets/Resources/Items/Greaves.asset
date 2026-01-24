@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Greaves
   m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.EquipData
   Icon: {fileID: -1804681607, guid: 02a0fe1d91b1f004da481fc48aea45e1, type: 3}
+  prefab: {fileID: 5651056791049671904, guid: 4b7cbf6f54a224c43915fb8d88cb7416, type: 3}
   ItemID: Greaves
   ItemName: Greaves
   Quantity: 1

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cuirass
   m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.EquipData
   Icon: {fileID: -920897669, guid: 02a0fe1d91b1f004da481fc48aea45e1, type: 3}
+  prefab: {fileID: 2400185495009225988, guid: 25d427f44ae439549b27515a20b2dcf9, type: 3}
   ItemID: Cuirass
   ItemName: Cuirass
   Quantity: 1
