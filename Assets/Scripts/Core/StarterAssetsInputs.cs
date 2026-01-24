@@ -51,7 +51,9 @@ namespace StarterAssets
 
 		public void OnLook(InputValue value)
 		{
-           
+            if (!_isFocusing)
+                return;
+
             if (cursorInputForLook)
 			{
 				LookInput(value.Get<Vector2>());
