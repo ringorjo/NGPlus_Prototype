@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7d296389ca26c845ac12b6bf1aedd73, type: 3}
-  m_Name: Shield_1
+  m_Name: Shield
   m_EditorClassIdentifier: Assembly-CSharp::BGNS_Studios.EquipData
   Icon: {fileID: -1192005328, guid: 7133f82fd49f1544680de8b6c9d9ed0a, type: 3}
-  ItemID: Shield_1
+  prefab: {fileID: 7286872723835002815, guid: b983ebc3a670acd4ea19aee36f2023f2, type: 3}
+  ItemID: Shield
   ItemName: Wooden Shield
   Quantity: 1
   IsConsumable: 0
